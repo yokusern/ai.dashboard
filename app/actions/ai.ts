@@ -51,3 +51,24 @@ export async function analyzeProject(details: string, role: string) {
     return null;
   }
 }
+
+export async function genericChat(message: string) {
+  if (!message) return null;
+
+  try {
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+    const prompt = `
+      You are an elite AI assistant for an SES sales and development dashboard.
+      Answer the user's request concisely and professionally.
+      
+      User Message: ${message}
+    `;
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    return response.text();
+  } catch (error) {
+    console.error("AI Chat Error:", error);
+    return "Error occurred while processing request.";
+  }
+}
