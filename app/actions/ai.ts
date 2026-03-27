@@ -43,9 +43,21 @@ export async function analyzeProject(details: string, role: string) {
     const response = await result.response;
     const text = response.text();
     
-    // Clean JSON markdown if necessary
-    const jsonStr = text.replace(/```json\n?|\n?```/g, "").trim();
-    return JSON.parse(jsonStr);
+    // Improved JSON extraction logic
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    const jsonStr = jsonMatch ? jsonMatch[0] : text;
+    
+    try {
+      return JSON.parse(jsonStr);
+    } catch (parseError) {
+      console.error("JSON Parse Error. Raw Text:", text);
+      // Fallback structured object
+      return {
+        metrics: { complexity: "Analysis Pending", matchProb: "—", riskFactor: "Contact Support" },
+        strategy: { edge: "Manual review required", mitigation: "Check logs", closing: "Try again" },
+        actions: { proposalDraft: "Error generating draft", interviewQuestion: "Error generating question" }
+      };
+    }
   } catch (error) {
     console.error("AI Analysis Error:", error);
     return null;
