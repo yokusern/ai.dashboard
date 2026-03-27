@@ -25,13 +25,13 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="flex h-full w-64 flex-col border-r border-[#f0f0f0] bg-white">
-      <div className="flex h-16 items-center px-6">
-        <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-black text-white">
-            <Zap className="h-5 w-5 fill-current" />
+    <div className="flex h-full w-60 flex-col border-r border-black/[0.05] sidebar-blur">
+      <div className="flex h-14 items-center px-6">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-black text-white shadow-sm">
+            <Zap className="h-4 w-4 fill-current" />
           </div>
-          <span className="text-lg font-bold tracking-tight">AI Dash</span>
+          <span className="text-[15px] font-bold tracking-tight text-black">AI Dashboard</span>
         </div>
       </div>
       
@@ -43,14 +43,14 @@ export default function Sidebar() {
               key={item.name}
               href={item.href}
               className={cn(
-                "group flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 sidebar-item-hover active:scale-90",
+                "group flex items-center gap-2.5 rounded-lg px-3 py-2 text-[13px] font-medium transition-all duration-200 interactive-button",
                 isActive 
-                  ? "bg-[#fafafa] text-black border-l-4 border-black" 
-                  : "text-gray-500 hover:text-black border-l-4 border-transparent"
+                  ? "bg-black/[0.04] text-black shadow-sm border border-black/[0.03]" 
+                  : "text-gray-500 hover:text-black"
               )}
             >
               <item.icon className={cn(
-                "h-5 w-5 transition-colors",
+                "h-4 w-4 transition-colors",
                 isActive ? "text-black" : "text-gray-400 group-hover:text-black"
               )} />
               {item.name}
@@ -59,12 +59,12 @@ export default function Sidebar() {
         })}
       </nav>
 
-      <div className="border-t border-[#f0f0f0] p-4">
+      <div className="border-t border-black/[0.05] p-4">
         <div className="flex items-center gap-3 px-2">
-          <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-gray-200 to-gray-100 border border-gray-200" />
+          <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-gray-200 to-gray-50 border border-black/[0.05]" />
           <div className="flex flex-col">
-            <span className="text-xs font-semibold">User Profile</span>
-            <span className="text-[10px] text-gray-400 uppercase tracking-wider">Premium Plan</span>
+            <span className="text-[11px] font-bold text-black">Standard Agent</span>
+            <span className="text-[9px] text-gray-400 font-numeric uppercase tracking-wider">Premium Access</span>
           </div>
         </div>
       </div>

@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "AI Dashboard | SES & Development Support",
-  description: "Advanced AI-powered dashboard for SES sales and development support.",
+  title: "AI Dashboard Pro | SES & Dev Intelligence",
+  description: "Next-gen AI dashboard for elite SES sales and developer support.",
 };
 
 export default function RootLayout({
@@ -19,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
-      <body className={`${inter.variable} font-sans h-full bg-[#f8f9fa] text-[#111111] antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans h-full bg-[#fdfdfd] text-[#111111] antialiased`}>
         {children}
       </body>
     </html>

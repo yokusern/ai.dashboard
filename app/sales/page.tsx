@@ -51,46 +51,46 @@ export default function SalesPage() {
   };
 
   return (
-    <div className="flex h-screen w-full bg-[#fcfcfc] overflow-hidden">
+    <div className="flex h-screen w-full bg-[#fdfdfd] overflow-hidden">
       <Sidebar />
       <div className="flex-1 flex flex-col min-w-0">
         <Header title="SES Interview Simulator" />
         <main className="flex-1 overflow-y-auto px-8 py-10 scroll-smooth animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <div className="mx-auto max-w-6xl w-full flex flex-col gap-6">
+          <div className="mx-auto max-w-5xl w-full flex flex-col gap-6">
             
             <header className="mb-4">
-              <h2 className="text-3xl font-bold tracking-tight text-[#111111]">AI Sales Copilot</h2>
-              <p className="text-gray-500 mt-1 text-sm">Convert complex requirements into winning strategies and mock interviews.</p>
+              <h2 className="text-2xl font-bold tracking-tight text-[#111111]">AI Sales Copilot</h2>
+              <p className="text-gray-500 mt-1 text-[13px]">Convert complex requirements into winning strategies and mock interviews.</p>
             </header>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
               
               {/* Left Pane: Input Section */}
               <div className="lg:col-span-5 flex flex-col gap-6">
-                <section className="bg-white border border-gray-100 shadow-sm rounded-2xl p-6 flex flex-col gap-6">
-                  <div className="flex items-center gap-3 text-xs font-bold text-black/40 uppercase tracking-widest">
-                    <Building2 className="h-4 w-4" />
+                <section className="bg-white border border-black/[0.05] shadow-sm rounded-xl p-6 flex flex-col gap-6">
+                  <div className="flex items-center gap-3 text-[10px] font-bold text-black/30 uppercase tracking-[0.2em]">
+                    <Building2 className="h-3.5 w-3.5" />
                     Input Parameters
                   </div>
 
                   <div className="flex flex-col gap-4">
-                    <div className="flex flex-col gap-2">
-                      <label className="text-sm font-bold text-gray-700">Project Details</label>
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Project Details</label>
                       <textarea 
                         value={projectDetails}
                         onChange={(e) => setProjectDetails(e.target.value)}
                         placeholder={"Skills: React, Node.js\nUnit Price: $8,000/mo\nDuration: 6 months...\nPaste requirement details here."}
-                        className="w-full min-h-[300px] bg-gray-50/50 border border-gray-100 rounded-xl p-4 text-sm outline-none focus:ring-2 focus:ring-black/5 transition-all resize-none placeholder:text-gray-300"
+                        className="w-full min-h-[280px] bg-gray-50/30 border border-black/[0.03] rounded-lg p-4 text-[13px] outline-none focus:border-black/10 transition-all resize-none placeholder:text-gray-300"
                       />
                     </div>
 
-                    <div className="flex flex-col gap-2">
-                      <label className="text-sm font-bold text-gray-700">Target Role</label>
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Target Role</label>
                       <div className="relative">
                         <select 
                           value={targetRole}
                           onChange={(e) => setTargetRole(e.target.value)}
-                          className="w-full appearance-none bg-gray-50/50 border border-gray-100 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-black/5 transition-all cursor-pointer font-medium"
+                          className="w-full appearance-none bg-gray-50/30 border border-black/[0.03] rounded-lg px-4 py-2.5 text-[13px] outline-none focus:border-black/10 transition-all cursor-pointer font-medium"
                         >
                           {roles.map((role) => (
                             <option key={role} value={role}>{role}</option>
@@ -105,18 +105,18 @@ export default function SalesPage() {
                     onClick={handleGenerate}
                     disabled={isLoading || !projectDetails.trim()}
                     className={cn(
-                      "w-full bg-black text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all duration-200 push-action-intense shadow-lg",
+                      "w-full bg-black text-white py-3 rounded-lg text-sm font-bold flex items-center justify-center gap-2 transition-all duration-200 interactive-button shadow-sm",
                       (isLoading || !projectDetails.trim()) && "opacity-50 cursor-not-allowed"
                     )}
                   >
                     {isLoading ? (
                       <>
-                        <Loader2 className="h-5 w-5 animate-spin" />
-                        Generating Intelligence...
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Analyzing...
                       </>
                     ) : (
                       <>
-                        <Zap className="h-5 w-5" />
+                        <Zap className="h-4 w-4" />
                         Generate Strategy
                       </>
                     )}
@@ -126,16 +126,16 @@ export default function SalesPage() {
 
               {/* Right Pane: AI Insights Section */}
               <div className="lg:col-span-7 flex flex-col gap-6">
-                <section className="bg-white border border-gray-100 shadow-sm rounded-2xl flex flex-col h-full min-h-[600px] overflow-hidden">
+                <section className="bg-white border border-black/[0.05] shadow-sm rounded-xl flex flex-col h-full min-h-[600px] overflow-hidden">
                   
                   {/* Tabs Header */}
-                  <div className="flex items-center border-b border-gray-100 relative pt-2 px-6">
+                  <div className="flex items-center border-b border-black/[0.05] relative px-6">
                     {(["battle-plan", "roleplay", "proposal"] as const).map((tab) => (
                       <button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
                         className={cn(
-                          "relative px-6 py-4 text-sm font-bold tracking-tight transition-colors duration-200 uppercase",
+                          "relative px-4 py-4 text-[11px] font-bold tracking-widest transition-colors duration-200 uppercase",
                           activeTab === tab ? "text-black" : "text-gray-400 hover:text-gray-600"
                         )}
                       >
@@ -143,7 +143,7 @@ export default function SalesPage() {
                         {activeTab === tab && (
                           <motion.div 
                             layoutId="activeTab"
-                            className="absolute bottom-0 left-0 right-0 h-[2px] bg-black"
+                            className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-black"
                             transition={{ type: "spring", stiffness: 380, damping: 30 }}
                           />
                         )}
@@ -160,57 +160,57 @@ export default function SalesPage() {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
-                          className="space-y-8"
+                          className="space-y-6"
                         >
                           <div className="space-y-4">
-                            <Skeleton className="h-6 w-1/3" />
+                            <Skeleton className="h-4 w-1/4" />
                             <div className="space-y-2">
-                              <Skeleton className="h-20 w-full" />
-                              <Skeleton className="h-20 w-full" />
+                              <Skeleton className="h-16 w-full" />
+                              <Skeleton className="h-16 w-full" />
                             </div>
                           </div>
                           <div className="space-y-4">
-                            <Skeleton className="h-6 w-1/4" />
+                            <Skeleton className="h-4 w-1/5" />
                             <div className="space-y-2">
-                              <Skeleton className="h-4 w-full" />
-                              <Skeleton className="h-4 w-[90%]" />
+                              <Skeleton className="h-3 w-full" />
+                              <Skeleton className="h-3 w-[85%]" />
                             </div>
                           </div>
                         </motion.div>
                       ) : isGenerated ? (
                         <motion.div
                           key={activeTab}
-                          initial={{ opacity: 0, y: 10 }}
+                          initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3 }}
                           className="flex flex-col gap-8"
                         >
                           {activeTab === "battle-plan" && (
-                            <div className="flex flex-col gap-10">
-                              <div className="flex flex-col gap-4">
-                                <div className="flex items-center gap-2 text-red-500 text-xs font-bold uppercase tracking-widest">
-                                  <ShieldAlert className="h-4 w-4" />
-                                  Potential Bottlenecks
+                            <div className="flex flex-col gap-8">
+                              <div className="flex flex-col gap-3">
+                                <div className="flex items-center gap-2 text-black/30 text-[10px] font-bold uppercase tracking-[0.2em]">
+                                  <ShieldAlert className="h-3.5 w-3.5" />
+                                  Potential Challenges
                                 </div>
-                                <ul className="space-y-3">
-                                  {["High competition for React/Node.js stack", "Remote coordination overhead", "Strict deadlines requiring senior oversight"].map((item, i) => (
-                                    <li key={i} className="flex items-start gap-4 p-4 rounded-xl bg-red-50/50 border border-red-100/50">
-                                      <span className="text-red-600 font-bold mt-0.5">•</span>
-                                      <p className="text-sm font-medium text-gray-700">{item}</p>
+                                <ul className="space-y-2">
+                                  {["Competitive React ecosystem", "Strict unit price caps", "Short timeline constraints"].map((item, i) => (
+                                    <li key={i} className="flex items-center gap-3 p-3 rounded-lg border border-black/[0.03] bg-gray-50/50 text-[13px] font-medium text-gray-600">
+                                      <span className="text-red-500">•</span>
+                                      {item}
                                     </li>
                                   ))}
                                 </ul>
                               </div>
-                              <div className="flex flex-col gap-4">
-                                <div className="flex items-center gap-2 text-green-500 text-xs font-bold uppercase tracking-widest">
-                                  <Trophy className="h-4 w-4" />
-                                  Competitive Edges
+                              <div className="flex flex-col gap-3">
+                                <div className="flex items-center gap-2 text-black/30 text-[10px] font-bold uppercase tracking-[0.2em]">
+                                  <Trophy className="h-3.5 w-3.5" />
+                                  Strategic Edges
                                 </div>
-                                <ul className="space-y-3">
-                                  {["Solid background in similar 6-month scale projects", "Expertise in specialized middleware", "Ready-to-deploy component library access"].map((item, i) => (
-                                    <li key={i} className="flex items-start gap-4 p-4 rounded-xl bg-green-50/50 border border-green-100/50">
-                                      <span className="text-green-600 font-bold mt-0.5">•</span>
-                                      <p className="text-sm font-medium text-gray-700">{item}</p>
+                                <ul className="space-y-2">
+                                  {["Proven remote expertise", "Technical leadership background", "Ready-to-deploy component sets"].map((item, i) => (
+                                    <li key={i} className="flex items-center gap-3 p-3 rounded-lg border border-black/[0.03] bg-gray-50/50 text-[13px] font-medium text-gray-600">
+                                      <span className="text-green-500">•</span>
+                                      {item}
                                     </li>
                                   ))}
                                 </ul>
@@ -219,30 +219,24 @@ export default function SalesPage() {
                           )}
 
                           {activeTab === "roleplay" && (
-                            <div className="flex flex-col gap-6">
-                              <div className="flex items-start gap-3 p-5 rounded-2xl bg-indigo-50/50 border border-indigo-100">
-                                <Sparkles className="h-5 w-5 text-indigo-500 mt-1 shrink-0" />
-                                <p className="text-sm text-indigo-700 font-medium leading-relaxed">
-                                  I&apos;ve prepared 3 challenging questions based on the technical stack and duration specified. Focus on your contribution to the team velocity for these.
-                                </p>
-                              </div>
+                            <div className="flex flex-col gap-5">
                               {[1, 2].map((i) => (
-                                <div key={i} className="flex flex-col gap-4 p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
-                                  <div className="flex items-center gap-2 text-xs font-bold text-indigo-500 uppercase tracking-widest" >
-                                    <MessageCircle className="h-4 w-4" />
+                                <div key={i} className="flex flex-col gap-3 p-5 rounded-xl border border-black/[0.05] bg-white hover:border-black/10 transition-colors">
+                                  <div className="flex items-center gap-2 text-[10px] font-bold text-black/20 uppercase tracking-widest" >
+                                    <MessageCircle className="h-3.5 w-3.5" />
                                     Mock Question #{i}
                                   </div>
-                                  <p className="font-bold text-gray-800">
+                                  <p className="text-[14px] font-bold text-black leading-snug">
                                     {i === 1 
-                                      ? "How do you ensure state management efficiency in large-scale React projects under tight timelines?"
-                                      : "Tell us about a time you had to handle a critical bug right before a production release."}
+                                      ? "How do you ensure state management efficiency in large-scale React projects?"
+                                      : "Tell us about a time you had to handle a critical production bug."}
                                   </p>
-                                  <div className="mt-2 p-4 rounded-xl bg-gray-50 border border-gray-200">
-                                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Model Answer</span>
-                                    <p className="text-sm text-gray-600 leading-relaxed italic">
+                                  <div className="mt-1 p-3 rounded-lg bg-gray-50/80 border border-black/[0.02]">
+                                    <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest block mb-1">Model Answer</span>
+                                    <p className="text-xs text-gray-500 leading-relaxed italic">
                                       {i === 1
-                                        ? "I prioritize memoization and selective updates using Context or specialized stores, ensuring minimum re-renders..."
-                                        : "I follow a strict triage process: isolate, reproduce, and fix while maintaining clear communication with the stakeholder..."}
+                                        ? "I prioritize memoization and selective updates using Context or specialized stores..."
+                                        : "I follow a strict triage process: isolate, reproduce, and fix while maintaining communication..."}
                                     </p>
                                   </div>
                                 </div>
@@ -252,36 +246,29 @@ export default function SalesPage() {
 
                           {activeTab === "proposal" && (
                             <div className="flex flex-col gap-6">
-                              <div className="flex flex-col gap-4">
+                              <div className="flex flex-col gap-3">
                                 <div className="flex items-center justify-between">
-                                  <div className="flex items-center gap-2 text-xs font-bold text-black/40 uppercase tracking-widest">
-                                    <FileText className="h-4 w-4" />
-                                    Dynamic Draft
+                                  <div className="flex items-center gap-2 text-[10px] font-bold text-black/30 uppercase tracking-widest">
+                                    <FileText className="h-3.5 w-3.5" />
+                                    Draft Output
                                   </div>
-                                  <button className="text-[10px] font-bold text-black uppercase tracking-widest hover:underline">Copy Text</button>
+                                  <button className="text-[9px] font-bold text-black uppercase tracking-widest hover:underline interactive-button">Copy</button>
                                 </div>
-                                <div className="p-8 rounded-3xl bg-zinc-950 text-zinc-300 font-mono text-xs leading-relaxed border border-zinc-800 shadow-inner">
-                                  <p className="mb-4 text-zinc-500">// AI-Generated Proposal Draft</p>
-                                  <p className="mb-2 text-zinc-400">Subject: Technical Proposal for {targetRole} - [{projectDetails.substring(0, 15)}...]</p>
-                                  <p className="mb-2 text-zinc-400">Dear Client,</p>
-                                  <p className="mb-4 text-zinc-100">I am writing to express strong interest in the project. My background in React development aligns perfectly with your requirements...</p>
-                                  <p className="mb-4 text-zinc-100">Key Value Propositions:</p>
-                                  <p className="mb-2 text-zinc-200">- Full familiarity with the required tech stack</p>
-                                  <p className="mb-2 text-zinc-200">- Proven track record in delivery efficiency</p>
-                                  <p className="mb-4 text-zinc-200">- Flexible collaboration hours</p>
-                                  <p className="text-zinc-400">Thank you for your consideration.</p>
+                                <div className="p-6 rounded-xl bg-[#0a0a0a] text-zinc-400 font-numeric text-[12px] leading-relaxed border border-black/10">
+                                  <p className="mb-2 text-zinc-200">Subject: Technical Proposal for {targetRole}</p>
+                                  <p className="mb-4">Dear Client,</p>
+                                  <p className="mb-4 text-zinc-300">I am writing to express strong interest in your project. My technical background aligns perfectly with your requirements...</p>
+                                  <p>Best regards,</p>
+                                  <p>Agent #01</p>
                                 </div>
                               </div>
                             </div>
                           )}
                         </motion.div>
                       ) : (
-                        <div className="flex flex-col items-center justify-center h-full text-center gap-4 opacity-30 select-none">
-                          <Zap className="h-16 w-16" />
-                          <div>
-                            <p className="text-xl font-bold">Waiting for input</p>
-                            <p className="text-sm">Generate intelligence to see the battle plan.</p>
-                          </div>
+                        <div className="flex flex-col items-center justify-center h-full text-center gap-4 opacity-10 select-none">
+                          <Zap className="h-12 w-12" />
+                          <p className="text-xs font-bold uppercase tracking-widest">Awaiting Analysis</p>
                         </div>
                       )}
                     </AnimatePresence>
